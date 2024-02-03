@@ -1,0 +1,177 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 25,
+    "width": 1350, 
+    "spacing": 4,
+    "modules-left": [
+        "hyprland/workspaces",
+        "tray",
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "network",
+        "pulseaudio",
+        "backlight",
+        "bluetooth",
+        "battery",
+        "custom/powermenu",
+        "custom/notification",
+
+   ],
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "on-click": "activate",
+        "format": "{icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
+    },
+    "hyprland/window": {
+        "format": "{}"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "icon-size": 13,
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "custom/powermenu" : {
+        "format" : "",
+        "on-click" : "pkill fuzzel || ~/.config/waybar/powermenu.sh",
+        "tooltip" : false
+    },
+    "tray": {
+        "spacing": 10
+    },
+    "clock" : {
+        "interval" : 1,
+        "format" : "{:%I:%M }",
+        "tooltip" : true,
+        "tooltip-format" : "<tt>{calendar}</tt>",
+    },
+    "cpu": {
+        "format": " {usage}%",
+        "tooltip": false,
+        "interval": 1
+    },
+    "memory": {
+        "format": " {}%",
+        "interval": 1
+    },
+    "backlight": {
+        "format": "{icon}",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "interval": 5,
+        "format": "{icon}",
+        "tooltip-format": "{capacity}% - {time}",
+        "format-charging": "",
+        "format-plugged": "",
+        "format-alt": "{icon} {time}",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    "network": {
+        "format-wifi": "{icon}",
+        "format-ethernet": "󰈀",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) \n\n{ipaddr}",
+        "on-click-right": "nmtui",
+        "format-icons": [
+            "󰤟",
+            "󰤢",
+            "󰤥",
+            "󰤨"        ]
+    },
+    "pulseaudio": {
+        "format": "{icon}",
+        "format-bluetooth": "{icon}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": "󰖁",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": [
+                "",
+                "",
+                "󰕾",
+                ""
+            ]
+        },
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click-right": "pavucontrol",
+        "tooltip-format": "{volume}"
+    },
+    "custom/notification": {
+      "tooltip": false,
+      "format": "{icon}",
+      "format-icons": {
+      "notification": "<span foreground='red'><sup></sup></span>",
+      "none": "",
+      "dnd-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-none": "",
+      "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-inhibited-none": ""
+      },
+      "return-type": "json",
+      "exec-if": "which swaync-client",
+      "exec": "swaync-client -swb",
+      "on-click": "swaync-client -t -sw",
+      "on-click-right": "swaync-client -d -sw",
+      "escape": true
+      },
+    "bluetooth": {
+        "format-on": "󰂯",
+        "format-off": "󰂲",
+        "format-connected": "󰂱",
+        "on-click": "~/.config/waybar/./toggle_bluetooth.sh",
+        "on-click-right": "blueberry",
+        "format-connected-battery": " {device_alias {device_battery_percentage}%",
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+    }
+}
